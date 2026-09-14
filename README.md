@@ -6,6 +6,8 @@
 
 ## 功能
 
+`1.3.0` 起支持简中、繁中、英文文案，并在语言变化时清除旧语言标签缓存。开发和接入说明见[多语言开发指南](docs/localization.md)。`1.2.1` 及更早版本不包含这些改动，升级后需要重新发布静态资源。
+
 1. 双击关闭标签页
 2. 当标签页过多时，可通过鼠标滚轮选择或者按住鼠标拖动
 3. 支持右键操作（目前支持的操作有：关闭所有标签、关闭其他标签、刷新当前标签、复制标签页链接）
@@ -52,6 +54,30 @@ This will override css and js files to `/public/vendor/laravel-admin-ext/iframe-
 此操作会覆盖css和js还有配置文件，配置文件可以根据自己的需要来选择是否强制覆盖
 
 ## 配置
+
+### 多语言
+
+扩展内置 `zh_CN`、`zh_TW`、`en` 语言包，右键菜单、关闭按钮和操作提示跟随 Laravel 当前语言。无需安装 Kit 也能通过 `app()->setLocale()` 使用；如需界面语言选择器，可启用 Dcat Admin Kit 的 `features.locale_switcher`。
+
+翻译键使用 `iframe-tab::iframe.*`。应用可在 Laravel 语言目录的 `vendor/iframe-tab/<语言>/iframe.php` 中覆盖文案。
+
+更新后执行 `php artisan vendor:publish --tag=iframe-tab --force` 发布 JS。如果应用覆盖过 `resources/views/vendor/iframe-tab/vertical.blade.php`，还需要手工合并新视图的翻译调用和 `iframe-tab-i18n` JSON 数据块。
+
+缓存包含标签的 HTML。首次升级或当前语言变化时会清除旧标签缓存并重新打开首页，防止恢复旧语言标题；同语言刷新保留原有缓存行为。切换语言前请先保存编辑内容。Kit 的选择器会刷新同源顶层页面；使用自己的切换器时也需要刷新顶层框架。业务菜单及页面标题的翻译由应用负责。
+
+### 联动回归测试
+
+测试使用相邻 `dcat-admin-kit` 仓库的 Composer 和 Playwright 开发依赖（先在 Kit 中完成 `composer install`、`npm ci`）。不需要启动 Demo 或连接业务数据库：
+
+```bash
+PHP_BINARY=php node ../dcat-admin-kit/node_modules/@playwright/test/cli.js test --config tests/Browser/playwright.config.js
+```
+
+默认使用本机 Chrome；CI 可设置 `CI=1` 使用已安装的 Playwright Chromium。Kit 位于其他位置时设置 `KIT_PATH`。测试覆盖 Session、CSRF、三种语言、主页面与 iframe 内切换、同语言缓存恢复及旧语言缓存失效。
+
+`src/assets/js/compress/base.js` 是实际发布文件，与 `src/assets/js/base.js` 保持同步；本次使用相同源码，避免依赖额外的压缩工具。
+
+### 配置项
 
 配置文件在 `config/iframe_tab.php`下dcat-Iframe-tab可提供的配置并不多，根据自己的需要去配置：
 

@@ -29,20 +29,20 @@
         {{--右键菜单监控--}}
         <div class="mouse-click-menu">
             <ul>
-                <li><a href="javascript:;" class="menu-item tab-close-all">关闭所有标签页</a></li>
-                <li><a href="javascript:;" class="menu-item tab-close-other">关闭其他标签页</a></li>
-                <li><a href="javascript:;" class="menu-item tab-refresh">刷新当前标签页</a></li>
+                <li><a href="javascript:;" class="menu-item tab-close-all">{{ trans('iframe-tab::iframe.close_all') }}</a></li>
+                <li><a href="javascript:;" class="menu-item tab-close-other">{{ trans('iframe-tab::iframe.close_other') }}</a></li>
+                <li><a href="javascript:;" class="menu-item tab-refresh">{{ trans('iframe-tab::iframe.refresh') }}</a></li>
                 @if(isset(config('admin.layout')['iframe_tab_cache'])&&config('admin.layout')['iframe_tab_cache']==1)
-                    <li><a href="javascript:;" class="menu-item tab-clear-cache">清空标签页缓存</a></li>
+                    <li><a href="javascript:;" class="menu-item tab-clear-cache">{{ trans('iframe-tab::iframe.clear_cache') }}</a></li>
                 @else
                     @if(config('iframe_tab.cache'))
-                        <li><a href="javascript:;" class="menu-item tab-clear-cache">清空标签页缓存</a></li>
+                        <li><a href="javascript:;" class="menu-item tab-clear-cache">{{ trans('iframe-tab::iframe.clear_cache') }}</a></li>
                     @endif
                 @endif
 
                 <li class="li_separate"></li>
-                <li><a href="javascript:;" class="menu-item tab-copy-link">复制标签页链接</a></li>
-                <li><a href="javascript:;" class="menu-item tab-open-link">新标签页中打开</a></li>
+                <li><a href="javascript:;" class="menu-item tab-copy-link">{{ trans('iframe-tab::iframe.copy_link') }}</a></li>
+                <li><a href="javascript:;" class="menu-item tab-open-link">{{ trans('iframe-tab::iframe.open_link') }}</a></li>
             </ul>
         </div>
         <div
@@ -82,6 +82,7 @@
 {!! Dcat\Admin\Admin::asset()->jsToHtml() !!}
 
 <script>Dcat.boot();</script>
+<script type="application/json" id="iframe-tab-i18n" data-locale="{{ app()->getLocale() }}">{!! json_encode(trans('iframe-tab::iframe'), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) !!}</script>
 <script src="{{asset('/vendor/iframe-tab/js/md5.js')}}"></script>
 <script src="{{asset('/vendor/iframe-tab/js/swiper.min.js')}}"></script>
 <script src="{{asset('/vendor/iframe-tab/js/base.js')}}"></script>

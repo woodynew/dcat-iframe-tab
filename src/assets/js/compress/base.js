@@ -1,1 +1,494 @@
-eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('\'2B 2C\';$(5(){4 j=2D 2E(\'.14-1Y\',{2F:\'1Z\',2G:0,2H:z,2I:z,2J:z,2K:{2L:\'.14-20-21\',2M:\'.14-20-22\'},2N:z,2O:z,2P:z,2Q:{2R:0.3},2S:z});4 k={1g:$(\'#7-v-1Y\'),G:$(\'#7-v\'),2T:$(\'#7-v .q-t\'),F:$(\'#7-2U\'),2V:$(\'.7-v-J-T\'),U:$(\'.23-L .q-t:2W(.1y-1z .q-t)\'),15:$(\'.23-L-2X .1h\'),24:$(".1i-L .1i-V"),1A:$(".1i-L")};4 l={1j:5 1j(a,b){4 c=1B.M<=2||1B[2]===2Y?z:1B[2];4 d=\'\';4 e=\'N-W=1\';9(c){d=\'<25 2Z="关闭标签页" 17="7-v-J-T"><i 17="26 26-30-31"></i></25>\';e=\'N-W=0\'}r\'\\n            <X 17="q-V 14-32" 1C="33">\\n                    <a \'+e+\' 17="q-t A" B="7-Y-\'+b+\'" N-34="35" u="#7-\'+b+\'" 1C="v" O-36="7-\'+b+\'" O-18="z">\\n                        \'+a+\'\\n                        \'+d+\'\\n                    </a>\\n            </X>\\n            \'},1k:5 1k(a,b){r\'\\n            <27 17="v-28 37 P A" B="7-\'+b+\'" 1C="38" O-39="7-Y-\'+b+\'">\\n                <7\\n                        3a="3b: 3c;29: 1l%;2a: 1l%;2b: 0;2c: 0;3d: 0;3e: 0;"\\n                        H="\'+a+\'" 29="1l%" 2a="1l%" 3f="2d" 3g="0" 3h="0"\\n                        3i="0"\\n                        2e-x="2d" 2e-y="1Z" 3j="3k"></7>\\n            </27>\\n            \'}};4 m={Z:$(\'#3l\').1m()+\'3m\',E:\'\',1n:2f($(\'#3n\').1m()),1o:2f($(\'#3o\').1m()),Q:5 Q(){4 a=19.1p(6.Z);r 1a.2g(a)===3p?{}:1a.2g(a)},1D:5 1D(a,b){4 c=6.Q();c[a]=b;4 d=1a.1E(c);19.1q(6.Z,d);r c},1F:5 1F(a){4 b=6.Q();9(b[a]){3q b[a];19.1q(6.Z,1a.1E(b))}r b},1r:5 1r(){19.3r(6.Z)},1G:5 1G(){k.U.1H(\'s\');k.24.1H(\'s\');$(\'.1y-1z\').p(\'a\').1H(\'s\');4 b=k.15.p(\'X\');b.p(\'a\').s(5(e){4 a=$(6).o(\'u\');9(!a||a===\'#\'){r}e.2h();b.p(\'.q-t\').10(\'A\');$(6).C(\'A\')});k.1A.p(\'.1i-V\').s(5(e){4 a=$(6).o(\'u\');9(!a||a===\'#\'){r}e.2h()})},1I:5 1I(){4 a=k.15.p(\'X\');a.p(\'a\').s(m.1s);k.1A.p(\'a\').s(m.1s);$(\'.1y-1z\').p(\'a\').s(5(){2i.u=$(6).o(\'u\')})},1s:5 1s(){4 a=$(6).1t(),u=$(6).o(\'u\'),B=m.1b(u);9(!u||u===\'#\'){r}9(u.3s("3t")!==-1){2i.u=u;r}4 b=l.1j(a,B),R=l.1k(u,B),2j=m.1u();m.11();m.S(2j);9(k.G.p(\'#7-Y-\'+B).M<=0){j.1J(b);k.F.12(R);4 c=$(\'#7-Y-\'+B),2k=c.I(\'.q-V\').2l(),1K=$(\'#7-\'+B);j.2m(2k);j.1L();c.C(\'A\');c.o(\'O-18\',\'z\');1K.C(\'A\');1K.C(\'P\');m.S(c)}2n{k.G.p(\'#7-Y-\'+B).s()}},1v:5 1v(){4 a=$(k.U[0]).1t();4 b=$(k.U[0]).o(\'u\');4 c=6.1b(b);j.1J(l.1j(a,c,1c));k.F.12(l.1k(b,c));j.1L()},11:5 11(){k.G.p(\'.q-t\').10(\'A\');k.G.p(\'.q-t\').o(\'O-18\',\'1c\');k.F.p(\'.v-28\').10(\'A\',\'P\')},1w:5 1w(a){a.p(\'.q-t\').s();m.11();a.p(\'.q-t\').C(\'A\');a.p(\'.q-t\').o(\'O-18\',\'z\');4 b=a.p(\'.q-t\').o(\'u\');k.F.p(b).C(\'A\');k.F.p(b).C(\'P\')},1M:5 1M(){$(w).D(\'s\',\'.7-v-J-T\',5(e){4 a=$(6).I(".q-t").o(\'N-W\');9(a===\'1\'){r}4 b=$(6).I(".q-V");9($(6).I(".q-t").2o(\'A\')){4 c=b.21();4 d=b.22();9(c.M>0){m.1w(c)}2n{m.1w(d)}}4 f=$($(6).I(".q-t").o(\'u\'));b.1N();f.1N();9(m.1n===1){m.1F($(6).I(".q-t").o(\'B\').2p("-").2q())}e.3u()});$(w).D(\'3v\',\'#7-v .q-t\',5(e){$(6).p(\'.7-v-J-T\').s();r 1c});$(w).D(\'s\',\'#7-v .q-t\',5(){4 a=$(6).o(\'u\');9(m.1o===1&&$(\'\'+a).M<=0){4 b=a.2r(\'#7-\',"");1d.1e(b);1d.1e(m.Q());k.F.12(m.Q()[b].R);m.11()}4 c=$(\'\'+a);m.1x(a);$(6).C(\'A\');$(6).o(\'O-18\',\'z\');c.C(\'A\');c.C(\'P\');4 d=$(6).I(\'.q-V\').2l();j.2m(d);j.1L();m.S($(6))});$(w).D(\'3w.3x.v\',\'#7-v .q-t\',5(a){m.S($(a.3y))});$(w).D(\'3z\',\'#7-v .q-t\',5(a){w.K=5(){r 1c};4 b=a.3A;9(b===3){4 x=a.3B;4 y=a.3C;$(\'.2s-s-L\').P().3D({2b:x,2c:y});m.E=$(6)}})},1O:5 1O(){$(w).D(\'s\',\'.v-2t-t\',5(){9(m.E!==\'\'){4 a=m.E.o("u");4 b=$(a+\' > 7\').o("H");4 c=$(\'<3E>\');$("3F").12(c);c.1m(b).3G();w.3H("2t");c.1N();$(6).3I(\'P\');1P.1Q(\'复制成功\')}w.K=5(){r z}});$(w).D(\'s\',\'.v-1R-t\',5(){9(m.E!==\'\'){4 a=m.E.o("u");4 b=$(a+\' > 7\').o("H");1S.1R(b)}w.K=5(){r z}});$(w).D(\'s\',\'.v-J-3J\',5(){9(m.E!==\'\'){k.G.p(\'.q-t\').1T(5(){4 a=$(6).o(\'N-W\');9(a===\'1\'){r}$(6).p(\'.7-v-J-T\').s()})}w.K=5(){r z}});$(w).D(\'s\',\'.v-J-3K\',5(){9(m.E!==\'\'){k.G.p(\'.q-t\').1T(5(){4 a=$(6).o(\'N-W\');9(a===\'1\'){r}9(m.E.o(\'B\')===$(6).o(\'B\')){m.E.s();r}m.S($(6));$(6).p(\'.7-v-J-T\').s()})}w.K=5(){r z}});$(w).D(\'s\',\'.v-3L-3M\',5(){m.1r();1P.1Q(\'缓存已清空\');k.G.1t(\'\');k.F.1t(\'\');m.1v();k.15.p(\'.q-t.A\').10(\'A\');$(k.U[0]).C(\'A\');w.K=5(){r z}});$(w).D(\'s\',\'.v-3N\',5(){9(m.E!==\'\'){4 a=$(m.E.o("u")+\' > 7\'),H=a.o(\'H\');a.o(\'H\',\'\');a.o(\'H\',H);1P.1Q(\'页面已刷新\')}w.K=5(){r z}});$(w).D(\'s\',5(){w.K=5(){r z};$(\'.2s-s-L\').2u()})},1U:5 1U(){9(6.1n===0){6.1r();r}4 a=6.Q();1d.1e(a);9(a.M===0||1a.1E(a)==="{}"){r}m.11();2v(4 i 2w a){j.1J(a[i].2x)}9(m.1o===0){2v(4 b 2w a){k.F.12(a[b].R)}}4 c=m.1u();4 d=1c;9(c.M<=0){d=z;4 e=$(k.U[0]).o(\'u\');4 f=6.1b(e);$(\'#7-Y-\'+f).s()}4 g=c.o(\'u\');9(m.1o===1&&!d){4 h=g.2r(\'#7-\',"");1d.1e(h);1d.1e(a[h].R);k.F.12(a[h].R)}m.1x(g)},S:5 S(a){9(6.1n!==1){r}9(a.o(\'N-W\')!==\'1\'){4 b=a.o(\'B\').2p("-").2q();4 c=a.I(\'X\').2y(\'2z\');4 d=$(\'#7-\'+b).2y(\'2z\');6.1D(b,{B:b,2x:c,R:d})}},1u:5 1u(){r k.G.p(\'.q-t.A\')},1x:5 1x(c){4 d=$(c+\' > 7\').o(\'H\');4 e=k.15.p(\'X\');e.p(\'a\').1T(5(){4 a=$(6).o(\'u\');9(!a||a===\'#\'){r}9(a===d){e.p(\'.q-t\').10(\'A\');$(6).C(\'A\');4 b=$(6).I(\'.3O-3P\');9(b.M>0&&!b.2o(\'L-1R\')){b.p("a[u=\'#\']").s()}}})},1V:5 1V(){6.1G();6.1v();6.1I();6.1U();6.1M();6.1O();6.1W()},1W:5 1W(){4 a=1S.3Q.19||{1q:5 1q(){},1p:5 1p(){}},2A=\'3R-3S-3T-1f\',1f=a.1p(2A);9(1f===\'13\'){k.1g.C(\'1h-13-1X\')}$(w).D(\'13-1f.3U\',5(){k.1g.C(\'1h-13-1X\')});$(w).D(\'13-1f.2u\',5(){k.1g.10(\'1h-13-1X\')})},1b:5 1b(a){r 3V(a+6.Z).3W(8,16)}};1S.3X={14:j,3Y:k,3Z:l,40:m};m.1V()});',62,249,'||||var|function|this|iframe||if|||||||||||||||attr|find|nav|return|click|link|href|tab|document|||true|active|id|addClass|on|CLICK_TAB|iframe_tabContent|iframe_tab|src|parents|close|oncontextmenu|menu|length|data|aria|show|storageGet|tab_content_html|cacheUpdateTabBar|btn|menu_link|item|first|li|home|TAB_STORAGE_KEY|removeClass|removeTabBarStyle|append|dark|swiper|menu_content||class|selected|localStorage|JSON|generateID|false|console|log|mode|iframe_tab_container|sidebar|dropdown|tabItem|tabContentItem|100|val|USE_CACHE|LAZY_LOAD|getItem|setItem|storageDeleteAll|menuClickCallback|html|findIframeTabActiveElement|joinFirstMenu|closeAdjacentOperate|linkMenuAndIframeTab|navbar|header|drop_menu|arguments|role|storageSet|stringify|storageDelete|clearDefaultMenuEvent|unbind|menuClick|appendSlide|content_element|updateSlides|iframeTabEventRegister|remove|rightClickEventRegister|Dcat|success|open|window|each|cacheInit|init|darkMode|white|container|auto|button|next|prev|main|drop_menu_link|span|fa|div|pane|width|height|left|top|no|scrolling|parseInt|parse|preventDefault|location|choose_element|_index|index|slideTo|else|hasClass|split|pop|replace|mouse|copy|hide|for|in|tab_html|prop|outerHTML|key|use|strict|new|Swiper|slidesPerView|spaceBetween|freeMode|watchSlidesProgress|watchSlidesVisibility|navigation|nextEl|prevEl|observer|observeParents|observeSlideChildren|mousewheel|sensitivity|grabCursor|iframe_tab_link|tabContent|item_close|not|content|undefined|title|minus|circle|slide|presentation|toggle|pill|controls|fade|tabpanel|labelledby|style|position|absolute|right|bottom|frameborder|border|marginwidth|marginheight|allowtransparency|yes|use_id|_6d9e562706a26cd2|iframe_tab_cache|iframe_tab_lazy_load|null|delete|removeItem|indexOf|logout|stopPropagation|dblclick|hidden|bs|target|mousedown|which|clientX|clientY|css|input|body|select|execCommand|tooltip|all|other|clear|cache|refresh|has|treeview|parent|dcat|admin|theme|shown|md5|substr|iframeTabParent|elements|iframeTabTemplate|iframeTab'.split('|'),0,{}))
+$(function () {
+    const localeElement = document.getElementById('iframe-tab-i18n');
+    const locale = localeElement ? localeElement.getAttribute('data-locale') : document.documentElement.lang;
+    const messages = localeElement ? JSON.parse(localeElement.textContent) : {};
+    const translate = (key, fallback) => messages[key] || fallback;
+    /*引用swiper插件*/
+    const swiper = new Swiper('.swiper-container', {
+        slidesPerView: 'auto',
+        spaceBetween: 0,
+        freeMode: true,
+        watchSlidesProgress: true,
+        watchSlidesVisibility: true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        observer: true,                         //开启监视者模式
+        observeParents: true,                   //开启监视父类
+        observeSlideChildren: true,             //开启监视子类
+        mousewheel: {
+            sensitivity: 0.3,                   //鼠标滚轮的控制速率
+        },
+        grabCursor: true,                       //开启抓手模式
+    });
+    /*管理元素*/
+    const elements = {
+        iframe_tab_container: $('#iframe-tab-container'),
+        iframe_tab: $('#iframe-tab'),
+        iframe_tab_link: $('#iframe-tab .nav-link'),
+        iframe_tabContent: $('#iframe-tabContent'),
+        item_close: $('.iframe-tab-close-btn'),
+        menu_link: $('.main-menu .nav-link:not(.navbar-header .nav-link)'),
+        menu_content: $('.main-menu-content .sidebar'),
+        drop_menu_link: $(".dropdown-menu .dropdown-item"),
+        drop_menu: $(".dropdown-menu"),
+    }
+    /*定义模板*/
+    const iframeTabTemplate = {
+        tabItem(html, id, use_close = true) {
+            /*标签栏*/
+            let close_html = ''
+            let first_tag = 'data-first=1'
+            if (use_close) {
+                close_html = $('<span class="iframe-tab-close-btn"><i class="fa fa-minus-circle"></i></span>')
+                    .attr('title', translate('close', 'Close tab')).prop('outerHTML')
+                first_tag = 'data-first=0'
+            }
+            return `
+            <li class="nav-item swiper-slide" role="presentation">
+                    <a ${first_tag} class="nav-link active" id="iframe-home-${id}" data-toggle="pill" href="#iframe-${id}" role="tab" aria-controls="iframe-${id}" aria-selected="true">
+                        ${html}
+                        ${close_html}
+                    </a>
+            </li>
+            `
+        },
+        tabContentItem(url, id) {
+            /*标签对应内容*/
+            return `
+            <div class="tab-pane fade show active" id="iframe-${id}" role="tabpanel" aria-labelledby="iframe-home-${id}">
+                <iframe
+                        style="position: absolute;width: 100%;height: 100%;left: 0;top: 0;right: 0;bottom: 0;"
+                        src="${url}" width="100%" height="100%" frameborder="no" border="0" marginwidth="0"
+                        marginheight="0"
+                        scrolling-x="no" scrolling-y="auto" allowtransparency="yes"></iframe>
+            </div>
+            `
+        }
+    }
+    /*Tab逻辑处理*/
+    const iframeTab = {
+        TAB_STORAGE_KEY: $('#use_id').val() + '_6d9e562706a26cd2',
+        CLICK_TAB: '',
+        USE_CACHE: parseInt($('#iframe_tab_cache').val()),
+        LAZY_LOAD: parseInt($('#iframe_tab_lazy_load').val()),
+        syncLocaleCache() {
+            const key = this.TAB_STORAGE_KEY + '_locale';
+            if (localStorage.getItem(key) !== locale) {
+                // Cached HTML contains translated labels; never restore another locale.
+                this.storageDeleteAll();
+                localStorage.setItem(key, locale);
+            }
+        },
+        storageGet() {
+            let data = localStorage.getItem(this.TAB_STORAGE_KEY)
+            return JSON.parse(data) === null ? {} : JSON.parse(data)
+        },
+        storageSet(id, value) {
+            this.syncLocaleCache();
+            let list = this.storageGet()
+            list[id] = value
+            let data = JSON.stringify(list)
+            localStorage.setItem(this.TAB_STORAGE_KEY, data)
+            return list;
+        },
+        storageDelete(id) {
+            /*删除一个*/
+            let data = this.storageGet()
+            if (data[id]) {
+                delete (data[id])
+                localStorage.setItem(this.TAB_STORAGE_KEY, JSON.stringify(data))
+            }
+            return data
+        },
+        storageDeleteAll() {
+            /*删除所有*/
+            localStorage.removeItem(this.TAB_STORAGE_KEY)
+        },
+        clearDefaultMenuEvent() {
+            elements.menu_link.unbind('click')
+            elements.drop_menu_link.unbind('click')
+            $('.navbar-header').find('a').unbind('click')
+            let items = elements.menu_content.find('li')
+            items.find('a').click(function (e) {
+                let href = $(this).attr('href');
+                if (!href || href === '#') {
+                    return;
+                }
+                e.preventDefault()
+                items.find('.nav-link').removeClass('active');
+                $(this).addClass('active')
+            })
+            elements.drop_menu.find('.dropdown-item').click(function (e) {
+                let href = $(this).attr('href');
+                if (!href || href === '#') {
+                    return;
+                }
+                e.preventDefault()
+            })
+        },
+        menuClick() {
+            let items = elements.menu_content.find('li')
+            /*左侧菜单监听*/
+            items.find('a').click(iframeTab.menuClickCallback);
+            /*顶部菜单监听*/
+            elements.drop_menu.find('a').click(iframeTab.menuClickCallback)
+            /*点击logo重定向*/
+            $('.navbar-header').find('a').click(function () {
+                location.href = $(this).attr('href')
+            })
+        },
+        menuClickCallback: function () {
+            let html = $(this).html(),
+                href = $(this).attr('href'),
+                id = iframeTab.generateID(href)
+            if (!href || href === '#') {
+                return
+            }
+            /*登出跳转*/
+            if (href.indexOf("logout") !== -1) {
+                location.href = href
+                return
+            }
+            let tab_html = iframeTabTemplate.tabItem(html, id),                 //生成tab的html
+                tab_content_html = iframeTabTemplate.tabContentItem(href, id),  //生成tab content的html
+                choose_element = iframeTab.findIframeTabActiveElement()
+            /*移除tab bar 选中样式*/
+            iframeTab.removeTabBarStyle()
+            /*更新选中缓存中的tab bar*/
+            iframeTab.cacheUpdateTabBar(choose_element)
+            /*判断tab是否已经存在，不存在添加，存在则更新*/
+            if (elements.iframe_tab.find(`#iframe-home-${id}`).length <= 0) {
+                swiper.appendSlide(tab_html)
+                elements.iframe_tabContent.append(tab_content_html)
+                let iframeTab_element = $(`#iframe-home-${id}`),             //获取tab的元素对象
+                    _index = iframeTab_element.parents('.nav-item').index(), //获取下标
+                    content_element = $(`#iframe-${id}`)                     //获取tab content的元素对象
+                swiper.slideTo(_index)
+                swiper.updateSlides()
+                iframeTab_element.addClass('active')
+                iframeTab_element.attr('aria-selected', 'true')
+                content_element.addClass('active')
+                content_element.addClass('show')
+                iframeTab.cacheUpdateTabBar(iframeTab_element)
+            } else {
+                /*模拟点击*/
+                elements.iframe_tab.find(`#iframe-home-${id}`).click()
+            }
+        },
+        joinFirstMenu() {
+            /*获取第一条菜单包括图标信息并添加到tab*/
+            let first_menu_html = $(elements.menu_link[0]).html()
+            let first_url = $(elements.menu_link[0]).attr('href');
+            let first_id = this.generateID(first_url);
+            swiper.appendSlide(iframeTabTemplate.tabItem(first_menu_html, first_id, false))
+            elements.iframe_tabContent.append(iframeTabTemplate.tabContentItem(first_url, first_id))
+            swiper.updateSlides();
+        },
+        removeTabBarStyle() {
+            /*移除tab bar 选中样式*/
+            elements.iframe_tab.find('.nav-link').removeClass('active');
+            elements.iframe_tab.find('.nav-link').attr('aria-selected', 'false')
+            elements.iframe_tabContent.find('.tab-pane').removeClass('active', 'show')
+        },
+        closeAdjacentOperate(adjacent) {
+            /*关闭标签后相邻兄弟元素的选择*/
+            adjacent.find(`.nav-link`).click()
+            iframeTab.removeTabBarStyle()
+            adjacent.find(`.nav-link`).addClass('active');
+            adjacent.find(`.nav-link`).attr('aria-selected', 'true')
+            let content_href = adjacent.find('.nav-link').attr('href')
+            elements.iframe_tabContent.find(content_href).addClass('active')
+            elements.iframe_tabContent.find(content_href).addClass('show')
+        },
+        iframeTabEventRegister() {
+            /*按关闭按钮关闭*/
+            $(document).on('click', '.iframe-tab-close-btn', function (e) {
+                let can_delete = $(this).parents(".nav-link").attr('data-first');
+                if (can_delete === '1') {
+                    return;
+                }
+                let parent_obj = $(this).parents(".nav-item")
+                /*如果是关闭当前选中的标签页，则下一个有选下一个，否则选上一个*/
+                if ($(this).parents(".nav-link").hasClass('active')) {
+                    let next_obj = parent_obj.next()
+                    let prev_obj = parent_obj.prev()
+                    if (next_obj.length > 0) {
+                        iframeTab.closeAdjacentOperate(next_obj)
+                    } else {
+                        iframeTab.closeAdjacentOperate(prev_obj)
+                    }
+                }
+                let tab_content_element = $($(this).parents(".nav-link").attr('href'))
+                parent_obj.remove()
+                tab_content_element.remove()
+                if (iframeTab.USE_CACHE === 1) {
+                    iframeTab.storageDelete($(this).parents(".nav-link").attr('id').split("-").pop())
+                }
+                e.stopPropagation()
+            });
+            /*双击关闭*/
+            $(document).on('dblclick', '#iframe-tab .nav-link', function (e) {
+                $(this).find('.iframe-tab-close-btn').click()
+                return false
+            });
+            /*联动菜单样式*/
+            $(document).on('click', '#iframe-tab .nav-link', function () {
+                let content_id = $(this).attr('href')
+                if (iframeTab.LAZY_LOAD === 1 && $(`${content_id}`).length <= 0) {
+                    let content_without_suffix = content_id.replace('#iframe-', "")
+                    console.log(content_without_suffix);
+                    console.log(iframeTab.storageGet());
+                    elements.iframe_tabContent.append(iframeTab.storageGet()[content_without_suffix].tab_content_html)
+                    iframeTab.removeTabBarStyle()
+                }
+                let content_element = $(`${content_id}`)
+                iframeTab.linkMenuAndIframeTab(content_id)
+                $(this).addClass('active');
+                $(this).attr('aria-selected', 'true')
+                content_element.addClass('active')
+                content_element.addClass('show')
+                let _index = $(this).parents('.nav-item').index()
+                swiper.slideTo(_index)
+                swiper.updateSlides();
+                iframeTab.cacheUpdateTabBar($(this))
+
+            });
+            /*获取上一个活动标签*/
+            $(document).on('hidden.bs.tab', '#iframe-tab .nav-link', function (event) {
+                iframeTab.cacheUpdateTabBar($(event.target))
+            });
+
+            /*右键菜单*/
+            $(document).on('mousedown', '#iframe-tab .nav-link', function (event) {
+                document.oncontextmenu = function () {
+                    return false;
+                }
+                // let event = window.event || arguments.callee.caller.arguments[0]
+                let key = event.which;//获取鼠标键位
+                if (key === 3) {//1：代表左键；2：代表中键；3：代表右键
+                    //获取右键点击坐标
+                    let x = event.clientX;
+                    let y = event.clientY;
+                    $('.mouse-click-menu').show().css({left: x, top: y});
+                    iframeTab.CLICK_TAB = $(this)
+                }
+            });
+        },
+        rightClickEventRegister() {
+            /*复制标签页链接*/
+            $(document).on('click', '.tab-copy-link', function () {
+                if (iframeTab.CLICK_TAB !== '') {
+                    let content_id = iframeTab.CLICK_TAB.attr("href")
+                    let content = $(`${content_id} > iframe`).attr("src")
+                    let $temp = $('<input>');
+                    $("body").append($temp);
+                    $temp.val(content).select();
+                    document.execCommand("copy");
+                    $temp.remove();
+                    $(this).tooltip('show');
+                    Dcat.success(translate('copied', 'Copied successfully'));
+                }
+                document.oncontextmenu = function () {
+                    return true;
+                }
+            })
+            /*在新标签页中打开*/
+            $(document).on('click', '.tab-open-link', function () {
+                if (iframeTab.CLICK_TAB !== '') {
+                    let content_id = iframeTab.CLICK_TAB.attr("href")
+                    let content = $(`${content_id} > iframe`).attr("src")
+                    window.open(content)
+                }
+                document.oncontextmenu = function () {
+                    return true;
+                }
+            })
+            /*关闭所有标签页*/
+            $(document).on('click', '.tab-close-all', function () {
+                if (iframeTab.CLICK_TAB !== '') {
+                    elements.iframe_tab.find('.nav-link').each(function () {
+                        let can_delete = $(this).attr('data-first');
+                        if (can_delete === '1') {
+                            return;
+                        }
+                        $(this).find('.iframe-tab-close-btn').click()
+                    })
+                }
+                document.oncontextmenu = function () {
+                    return true;
+                }
+            })
+            /*关闭其他标签页*/
+            $(document).on('click', '.tab-close-other', function () {
+                if (iframeTab.CLICK_TAB !== '') {
+                    elements.iframe_tab.find('.nav-link').each(function () {
+                        let can_delete = $(this).attr('data-first');
+                        if (can_delete === '1') {
+                            return;
+                        }
+                        if (iframeTab.CLICK_TAB.attr('id') === $(this).attr('id')) {
+                            iframeTab.CLICK_TAB.click()
+                            return;
+                        }
+                        iframeTab.cacheUpdateTabBar($(this))
+                        $(this).find('.iframe-tab-close-btn').click()
+                    })
+                }
+                document.oncontextmenu = function () {
+                    return true;
+                }
+            })
+            /*清空缓存*/
+            $(document).on('click', '.tab-clear-cache', function () {
+                iframeTab.storageDeleteAll()
+                Dcat.success(translate('cache_cleared', 'Tab cache cleared'));
+                elements.iframe_tab.html('')
+                elements.iframe_tabContent.html('')
+                iframeTab.joinFirstMenu()
+                elements.menu_content.find('.nav-link.active').removeClass('active')
+                $(elements.menu_link[0]).addClass('active')
+                document.oncontextmenu = function () {
+                    return true;
+                }
+            })
+            /*刷新当前标签页*/
+            $(document).on('click', '.tab-refresh', function () {
+                if (iframeTab.CLICK_TAB !== '') {
+                    let iframe_element = $(`${iframeTab.CLICK_TAB.attr("href")} > iframe`),
+                        src = iframe_element.attr('src')
+                    iframe_element.attr('src', '')
+                    iframe_element.attr('src', src)
+                    Dcat.success(translate('refreshed', 'Page refreshed'))
+                }
+                document.oncontextmenu = function () {
+                    return true;
+                }
+            })
+            /*全局点击事件，释放浏览器默认右键菜单*/
+            $(document).on('click', function () {
+                document.oncontextmenu = function () {
+                    return true;
+                }
+                $('.mouse-click-menu').hide();
+            })
+        },
+        cacheInit() {
+            if (this.USE_CACHE === 0) {
+                this.storageDeleteAll()
+                return;
+            }
+            let list = this.storageGet()
+            console.log(list);
+            if (list.length === 0 || JSON.stringify(list) === "{}") {
+                return;
+            }
+            iframeTab.removeTabBarStyle()
+            for (let i in list) {
+                swiper.appendSlide(list[i].tab_html)
+            }
+            if (iframeTab.LAZY_LOAD === 0) {
+                for (let i in list) {
+                    elements.iframe_tabContent.append(list[i].tab_content_html)
+                }
+            }
+            /*如果html里面没有active,则默认使用第一个*/
+            let active_ele = iframeTab.findIframeTabActiveElement()
+            let is_first = false;
+            if (active_ele.length <= 0) {
+                is_first = true;
+                let first_url = $(elements.menu_link[0]).attr('href');
+                let first_id = this.generateID(first_url);
+                $(`#iframe-home-${first_id}`).click()
+            }
+            let content_id = active_ele.attr('href')
+            if (iframeTab.LAZY_LOAD === 1 && !is_first) {
+                let content_without_suffix = content_id.replace('#iframe-', "")
+                console.log(content_without_suffix);
+                console.log(list[content_without_suffix].tab_content_html);
+                elements.iframe_tabContent.append(list[content_without_suffix].tab_content_html)
+            }
+            iframeTab.linkMenuAndIframeTab(content_id)
+        },
+        cacheUpdateTabBar(tab_link_element) {
+            if (this.USE_CACHE !== 1) {
+                return;
+            }
+            /*更新TabBar的html*/
+            if (tab_link_element.attr('data-first') !== '1') {
+                let id = tab_link_element.attr('id').split("-").pop();
+                let tab_html = tab_link_element.parents('li').prop('outerHTML')
+                let tab_content_html = $(`#iframe-${id}`).prop('outerHTML')
+                this.storageSet(id, {id, tab_html, tab_content_html})
+            }
+        },
+        findIframeTabActiveElement() {
+            /*寻找tab里面选中的元素并返回*/
+            return elements.iframe_tab.find('.nav-link.active')
+        },
+        linkMenuAndIframeTab(content_id) {
+            /*链接Iframe tab和Menu*/
+            let href = $(`${content_id} > iframe`).attr('src')
+            let items = elements.menu_content.find('li')
+            items.find('a').each(function () {
+                let item_href = $(this).attr('href')
+                if (!item_href || item_href === '#') {
+                    return;
+                }
+                if (item_href === href) {
+                    items.find('.nav-link').removeClass('active');
+                    $(this).addClass('active')
+                    let parent_obj = $(this).parents('.has-treeview')
+                    if (parent_obj.length > 0 && !parent_obj.hasClass('menu-open')) {
+                        parent_obj.find("a[href='#']").click()
+                    }
+                }
+            })
+        },
+        init() {
+            this.syncLocaleCache();
+            /*清除pjax默认菜单a标签点击事件*/
+            this.clearDefaultMenuEvent()
+            /*加入第一条默认菜单*/
+            this.joinFirstMenu()
+            /*菜单监听*/
+            this.menuClick()
+            /*缓存标签页处理*/
+            this.cacheInit()
+            /*事件注册*/
+            this.iframeTabEventRegister()
+            /*右键事件注册*/
+            this.rightClickEventRegister()
+            /*兼容dcat夜间模式*/
+            this.darkMode()
+        },
+        darkMode() {
+            const storage = window.parent.localStorage || {
+                    setItem: function () {
+                    }, getItem: function () {
+                    }
+                },
+                key = 'dcat-admin-theme-mode',
+                mode = storage.getItem(key)
+
+            if (mode === 'dark') {
+                elements.iframe_tab_container.addClass('sidebar-dark-white')
+            }
+            $(document).on('dark-mode.shown', function () {
+                elements.iframe_tab_container.addClass('sidebar-dark-white')
+            });
+
+            $(document).on('dark-mode.hide', function () {
+                elements.iframe_tab_container.removeClass('sidebar-dark-white')
+            });
+        },
+        /*生成ID*/
+        generateID(href) {
+            return md5(href + this.TAB_STORAGE_KEY).substr(8, 16)
+        },
+    }
+    /*挂载*/
+    window.iframeTabParent = {swiper, elements, iframeTabTemplate, iframeTab}
+    iframeTab.init()
+})

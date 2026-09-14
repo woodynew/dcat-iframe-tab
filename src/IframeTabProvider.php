@@ -56,6 +56,7 @@ JS
     public function boot()
     {
         $this->loadViewsFrom(__DIR__ . '/resource/views', 'iframe-tab');
+        $this->loadTranslationsFrom(__DIR__ . '/resource/lang', 'iframe-tab');
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
         $this->publishes([
             __DIR__ . '/assets/js/compress' => public_path('vendor/iframe-tab/js'),

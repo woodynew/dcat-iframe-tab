@@ -1,4 +1,8 @@
 $(function () {
+    const localeElement = document.getElementById('iframe-tab-i18n');
+    const locale = localeElement ? localeElement.getAttribute('data-locale') : document.documentElement.lang;
+    const messages = localeElement ? JSON.parse(localeElement.textContent) : {};
+    const translate = (key, fallback) => messages[key] || fallback;
     /*引用swiper插件*/
     const swiper = new Swiper('.swiper-container', {
         slidesPerView: 'auto',
@@ -37,7 +41,8 @@ $(function () {
             let close_html = ''
             let first_tag = 'data-first=1'
             if (use_close) {
-                close_html = '<span title="关闭标签页" class="iframe-tab-close-btn"><i class="fa fa-minus-circle"></i></span>'
+                close_html = $('<span class="iframe-tab-close-btn"><i class="fa fa-minus-circle"></i></span>')
+                    .attr('title', translate('close', 'Close tab')).prop('outerHTML')
                 first_tag = 'data-first=0'
             }
             return `
@@ -68,11 +73,20 @@ $(function () {
         CLICK_TAB: '',
         USE_CACHE: parseInt($('#iframe_tab_cache').val()),
         LAZY_LOAD: parseInt($('#iframe_tab_lazy_load').val()),
+        syncLocaleCache() {
+            const key = this.TAB_STORAGE_KEY + '_locale';
+            if (localStorage.getItem(key) !== locale) {
+                // Cached HTML contains translated labels; never restore another locale.
+                this.storageDeleteAll();
+                localStorage.setItem(key, locale);
+            }
+        },
         storageGet() {
             let data = localStorage.getItem(this.TAB_STORAGE_KEY)
             return JSON.parse(data) === null ? {} : JSON.parse(data)
         },
         storageSet(id, value) {
+            this.syncLocaleCache();
             let list = this.storageGet()
             list[id] = value
             let data = JSON.stringify(list)
@@ -274,7 +288,7 @@ $(function () {
                     document.execCommand("copy");
                     $temp.remove();
                     $(this).tooltip('show');
-                    Dcat.success('复制成功');
+                    Dcat.success(translate('copied', 'Copied successfully'));
                 }
                 document.oncontextmenu = function () {
                     return true;
@@ -329,7 +343,7 @@ $(function () {
             /*清空缓存*/
             $(document).on('click', '.tab-clear-cache', function () {
                 iframeTab.storageDeleteAll()
-                Dcat.success('缓存已清空');
+                Dcat.success(translate('cache_cleared', 'Tab cache cleared'));
                 elements.iframe_tab.html('')
                 elements.iframe_tabContent.html('')
                 iframeTab.joinFirstMenu()
@@ -346,7 +360,7 @@ $(function () {
                         src = iframe_element.attr('src')
                     iframe_element.attr('src', '')
                     iframe_element.attr('src', src)
-                    Dcat.success('页面已刷新')
+                    Dcat.success(translate('refreshed', 'Page refreshed'))
                 }
                 document.oncontextmenu = function () {
                     return true;
@@ -433,6 +447,7 @@ $(function () {
             })
         },
         init() {
+            this.syncLocaleCache();
             /*清除pjax默认菜单a标签点击事件*/
             this.clearDefaultMenuEvent()
             /*加入第一条默认菜单*/
