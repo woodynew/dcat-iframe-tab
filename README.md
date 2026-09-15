@@ -6,7 +6,7 @@
 
 ## 功能
 
-`1.3.0` 起支持简中、繁中、英文文案，并在语言变化时清除旧语言标签缓存。开发和接入说明见[多语言开发指南](docs/localization.md)。`1.2.1` 及更早版本不包含这些改动，升级后需要重新发布静态资源。
+支持简中、繁中、英文文案，并在语言变化时清除旧语言标签缓存。开发和接入说明见[多语言开发指南](docs/localization.md)；升级后需要重新发布静态资源（见下方发布命令）。
 
 1. 双击关闭标签页
 2. 当标签页过多时，可通过鼠标滚轮选择或者按住鼠标拖动
@@ -49,9 +49,7 @@ $ php artisan vendor:publish --tag=iframe-tab --force
 $ php artisan vendor:publish --tag=iframe-tab.config --force
 ```
 
-This will override css and js files to `/public/vendor/laravel-admin-ext/iframe-tabs/`
-
-此操作会覆盖css和js还有配置文件，配置文件可以根据自己的需要来选择是否强制覆盖
+上述命令会把 css、js 覆盖到 `public/vendor/iframe-tab`；带 `--force` 时配置文件也会被覆盖，配置文件可按需选择是否强制覆盖。
 
 ## 配置
 
