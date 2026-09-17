@@ -23,8 +23,8 @@
     {!! Dcat\Admin\Admin::asset()->headerJsToHtml() !!}
 
     {!! Dcat\Admin\Admin::asset()->cssToHtml() !!}
-    <link rel="stylesheet" href="{{asset('/vendor/iframe-tab/css/swiper.min.css')}}">
-    <link rel="stylesheet" href="{{asset('/vendor/iframe-tab/css/style.css')}}">
+    <link rel="stylesheet" href="{{mosi_iframeTabAsset('/vendor/iframe-tab/css/swiper.min.css')}}">
+    <link rel="stylesheet" href="{{mosi_iframeTabAsset('/vendor/iframe-tab/css/style.css')}}">
 </head>
 
 @extends('iframe-tab::vertical')

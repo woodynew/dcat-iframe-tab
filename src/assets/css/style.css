@@ -233,6 +233,12 @@
 #iframe-tab-container.sidebar-dark-white #iframe-tab .nav-link.active{
     background: #1e1e2d;
 }
+/* 暗色主题：关闭按钮统一为白色（与选中标签的按钮一致）。
+   沿用亮色下的深灰 #414750 时，非选中标签上的按钮在深色标签栏上几乎看不见。 */
+#iframe-tab-container.sidebar-dark-white #iframe-tab .nav-link .iframe-tab-close-btn i {
+    color: #fff;
+    font-size: 12px;
+}
 #iframe-tab-container.sidebar-dark-white{
     border-top: 1px solid #2c2c42;
 }

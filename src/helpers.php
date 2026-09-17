@@ -14,3 +14,17 @@ if (!function_exists('mosi_iframeTabBodyClass')){
         return $iframe_body_class;
     }
 }
+
+if (!function_exists('mosi_iframeTabAsset')) {
+    /**
+     * iframe-tab 静态资源地址：拼上文件修改时间做版本号。
+     * 发布出来的 style.css/base.js 不带版本号时，浏览器会一直用缓存里的旧文件，
+     * 改了样式也看不到效果。文件不存在时退回原地址。
+     */
+    function mosi_iframeTabAsset($path)
+    {
+        $file = public_path(ltrim($path, '/'));
+
+        return is_file($file) ? asset($path).'?v='.filemtime($file) : asset($path);
+    }
+}
