@@ -183,20 +183,29 @@
 }
 
 .swiper-button-prev i, .swiper-button-next i {
-    color: #555555;
+    color: #4e5969;
     font-size: 20px;
 }
 
-.swiper-button-prev {
+/* 箭头按钮盖住标签栏两端。背景必须不透明，否则选中标签的主色会从按钮底下透出来。
+   Swiper 给到头的按钮加 opacity:.35，会把箭头洗进白色标签栏。 */
+.swiper-button-prev,
+.swiper-button-next {
     width: 40px;
     height: 40px;
-    background: #efefef;
-    left: 0;
+    background: #fff;
     border: none;
     box-shadow: none;
     margin-top: 0;
     top: 0;
     outline: none;
+    z-index: 10;
+    opacity: 1;
+}
+
+.swiper-button-prev {
+    left: 0;
+    border-right: 1px solid #e5e6eb;
 }
 
 .swiper-button-prev:after, .swiper-container-rtl .swiper-button-next:after {
@@ -204,13 +213,18 @@
 }
 
 .swiper-button-next {
-    width: 40px;
-    height: 40px;
-    background: #efefef;
     right: 0;
-    margin-top: 0;
-    top: 0;
-    outline: none;
+    border-left: 1px solid #e5e6eb;
+}
+
+.swiper-button-prev.swiper-button-disabled,
+.swiper-button-next.swiper-button-disabled {
+    opacity: 1;
+}
+
+.swiper-button-prev.swiper-button-disabled i,
+.swiper-button-next.swiper-button-disabled i {
+    color: #c9cdd4;
 }
 
 .swiper-button-next:after, .swiper-container-rtl .swiper-button-prev:after {
@@ -249,4 +263,8 @@
 }
 #iframe-tab-container.sidebar-dark-white .swiper-button-prev i,#iframe-tab-container.sidebar-dark-white .swiper-button-next i{
     color: #efefef;
+}
+#iframe-tab-container.sidebar-dark-white .swiper-button-prev.swiper-button-disabled i,
+#iframe-tab-container.sidebar-dark-white .swiper-button-next.swiper-button-disabled i {
+    color: #6b7280;
 }
