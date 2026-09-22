@@ -103,6 +103,24 @@ return [
 ];
 ```
 
+### 首页不要指向外壳路由
+
+开启后，扩展会占用 `GET {admin前缀}{router}`（默认就是 `/admin`）作为外壳：侧边栏、标签栏和一块空的 iframe。页面加载时，脚本把侧边栏**第一条**菜单的地址放进这个 iframe。
+
+dcat-admin 安装时的 Dashboard 菜单 `uri` 是 `/`，渲染出来仍是 `/admin`。第一条菜单因此又打开了外壳自己，后台会一层层嵌套。
+
+新项目按下面接：
+
+1. 真正的首页另给一条路由，例如 `/admin/home`。`router`（默认 `/`）留给外壳。
+2. 把第一条菜单的 `uri` 从 `/` 改成 `home`。这条会被自动打开，不能指向外壳。
+3. 其它菜单也不要指向 `router`。业务页用自己的路径。
+
+```php
+$router->get('/home', 'HomeController@index');
+```
+
+登录后打开 `/admin` 看到的是外壳，标签里加载的是 `/admin/home`。
+
 ## 新增扩展接口和扩展功能
 
 1. 用户可以在子页面引入 `public/vendor/iframe-tab/js/extend.js`文件，或者通过调用`window.iframeTabParent`全局对象来调用父级页面的iframe-tab
