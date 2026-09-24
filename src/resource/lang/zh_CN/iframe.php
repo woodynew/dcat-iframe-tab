@@ -11,4 +11,6 @@ return [
     'copied' => '复制成功',
     'cache_cleared' => '缓存已清空',
     'refreshed' => '页面已刷新',
+    'loading' => '正在打开页面',
+    'loading_hint' => '内容马上就好',
 ];

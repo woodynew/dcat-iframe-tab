@@ -11,4 +11,6 @@ return [
     'copied' => '複製成功',
     'cache_cleared' => '快取已清除',
     'refreshed' => '頁面已重新載入',
+    'loading' => '正在開啟頁面',
+    'loading_hint' => '內容很快就好',
 ];

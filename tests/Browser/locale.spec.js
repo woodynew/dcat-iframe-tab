@@ -7,6 +7,8 @@ test('Kit switches shell and child languages; iframe preserves same-locale tabs 
     page.on('pageerror', error => errors.push(error.message));
     await page.goto('/admin/fixture');
     await expect(page.locator('.dcat-kit-locale')).toHaveValue('zh_CN');
+    await expect(page.locator('#iframe-tabContent .iframe-tab-loader-card')).toHaveCount(1);
+    await expect(page.locator('#iframe-tabContent .iframe-tab-loader-card')).toContainText('正在打开页面');
     await expect(page.locator('#iframe-tab .nav-link')).toHaveCount(1);
     await page.locator('.main-menu .nav-link').nth(1).click();
     await expect(page.locator('#iframe-tab .nav-link')).toHaveCount(2);

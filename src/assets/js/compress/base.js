@@ -57,19 +57,29 @@ $(function () {
         tabContentItem(url, id) {
             /*标签对应内容*/
             return `
-            <div class="tab-pane fade show active" id="iframe-${id}" role="tabpanel" aria-labelledby="iframe-home-${id}">
+            <div class="tab-pane fade show active iframe-tab-pane" id="iframe-${id}" role="tabpanel" aria-labelledby="iframe-home-${id}">
+                <div class="iframe-tab-loading" role="status" aria-live="polite">
+                    <span class="iframe-tab-progress" aria-hidden="true"></span>
+                    <span class="iframe-tab-loader-aura" aria-hidden="true"></span>
+                    <div class="iframe-tab-loader-card">
+                        <span class="iframe-tab-loader-mark" aria-hidden="true"><i></i><i></i></span>
+                        <strong>${translate('loading', '正在打开页面')}</strong>
+                        <small>${translate('loading_hint', '内容马上就好')}</small>
+                    </div>
+                </div>
                 <iframe
                         style="position: absolute;width: 100%;height: 100%;left: 0;top: 0;right: 0;bottom: 0;"
                         src="${url}" width="100%" height="100%" frameborder="no" border="0" marginwidth="0"
                         marginheight="0"
-                        scrolling-x="no" scrolling-y="auto" allowtransparency="yes"></iframe>
+                        scrolling-x="no" scrolling-y="auto" allowtransparency="yes"
+                        onload="try{if(this.contentWindow.location.href!=='about:blank')this.parentElement.classList.add('is-ready')}catch(e){if(this.getAttribute('src'))this.parentElement.classList.add('is-ready')}"></iframe>
             </div>
             `
         }
     }
     /*Tab逻辑处理*/
     const iframeTab = {
-        TAB_STORAGE_KEY: $('#use_id').val() + '_6d9e562706a26cd2',
+        TAB_STORAGE_KEY: $('#use_id').val() + '_6d9e562706a26cd4',
         CLICK_TAB: '',
         USE_CACHE: parseInt($('#iframe_tab_cache').val()),
         LAZY_LOAD: parseInt($('#iframe_tab_lazy_load').val()),
@@ -358,6 +368,7 @@ $(function () {
                 if (iframeTab.CLICK_TAB !== '') {
                     let iframe_element = $(`${iframeTab.CLICK_TAB.attr("href")} > iframe`),
                         src = iframe_element.attr('src')
+                    iframe_element.parent().removeClass('is-ready')
                     iframe_element.attr('src', '')
                     iframe_element.attr('src', src)
                     Dcat.success(translate('refreshed', 'Page refreshed'))

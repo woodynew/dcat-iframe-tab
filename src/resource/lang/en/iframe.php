@@ -11,4 +11,6 @@ return [
     'copied' => 'Copied successfully',
     'cache_cleared' => 'Tab cache cleared',
     'refreshed' => 'Page refreshed',
+    'loading' => 'Opening page',
+    'loading_hint' => 'Your content is almost ready',
 ];
