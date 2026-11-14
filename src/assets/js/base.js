@@ -92,8 +92,20 @@ $(function () {
             }
         },
         storageGet() {
-            let data = localStorage.getItem(this.TAB_STORAGE_KEY)
-            return JSON.parse(data) === null ? {} : JSON.parse(data)
+            try {
+                const raw = localStorage.getItem(this.TAB_STORAGE_KEY);
+                if (raw === null) {
+                    return {};
+                }
+                const data = JSON.parse(raw);
+                if (data && typeof data === 'object' && !Array.isArray(data)) {
+                    return data;
+                }
+            } catch (e) {
+                // A broken cache must not prevent the default page from opening.
+            }
+            this.storageDeleteAll();
+            return {};
         },
         storageSet(id, value) {
             this.syncLocaleCache();
@@ -115,6 +127,7 @@ $(function () {
         storageDeleteAll() {
             /*删除所有*/
             localStorage.removeItem(this.TAB_STORAGE_KEY)
+            localStorage.removeItem(this.TAB_STORAGE_KEY + '_active')
         },
         clearDefaultMenuEvent() {
             elements.menu_link.unbind('click')
@@ -187,20 +200,38 @@ $(function () {
                 elements.iframe_tab.find(`#iframe-home-${id}`).click()
             }
         },
-        joinFirstMenu() {
+        joinFirstMenu(activate = true) {
             /*获取第一条菜单包括图标信息并添加到tab*/
             let first_menu_html = $(elements.menu_link[0]).html()
             let first_url = $(elements.menu_link[0]).attr('href');
             let first_id = this.generateID(first_url);
             swiper.appendSlide(iframeTabTemplate.tabItem(first_menu_html, first_id, false))
-            elements.iframe_tabContent.append(iframeTabTemplate.tabContentItem(first_url, first_id))
+            if (this.LAZY_LOAD !== 1) {
+                elements.iframe_tabContent.append(iframeTabTemplate.tabContentItem(first_url, first_id))
+            }
             swiper.updateSlides();
+            if (activate) {
+                elements.iframe_tab.find('.nav-link[data-first="1"]').click();
+            }
         },
         removeTabBarStyle() {
             /*移除tab bar 选中样式*/
             elements.iframe_tab.find('.nav-link').removeClass('active');
             elements.iframe_tab.find('.nav-link').attr('aria-selected', 'false')
             elements.iframe_tabContent.find('.tab-pane').removeClass('active', 'show')
+        },
+        loadTabContent(tab) {
+            const content_id = tab.attr('href');
+            let content = $(content_id);
+            if (!content.length) {
+                const id = content_id.replace('#iframe-', '');
+                const cached = this.storageGet()[id];
+                content = $(cached ? cached.tab_content_html
+                    : iframeTabTemplate.tabContentItem($(elements.menu_link[0]).attr('href'), id))
+                    .removeClass('active show is-ready');
+                elements.iframe_tabContent.append(content);
+            }
+            return content;
         },
         closeAdjacentOperate(adjacent) {
             /*关闭标签后相邻兄弟元素的选择*/
@@ -245,15 +276,9 @@ $(function () {
             });
             /*联动菜单样式*/
             $(document).on('click', '#iframe-tab .nav-link', function () {
-                let content_id = $(this).attr('href')
-                if (iframeTab.LAZY_LOAD === 1 && $(`${content_id}`).length <= 0) {
-                    let content_without_suffix = content_id.replace('#iframe-', "")
-                    console.log(content_without_suffix);
-                    console.log(iframeTab.storageGet());
-                    elements.iframe_tabContent.append(iframeTab.storageGet()[content_without_suffix].tab_content_html)
-                    iframeTab.removeTabBarStyle()
-                }
-                let content_element = $(`${content_id}`)
+                const content_id = $(this).attr('href');
+                const content_element = iframeTab.loadTabContent($(this));
+                iframeTab.removeTabBarStyle()
                 iframeTab.linkMenuAndIframeTab(content_id)
                 $(this).addClass('active');
                 $(this).attr('aria-selected', 'true')
@@ -368,9 +393,12 @@ $(function () {
                 if (iframeTab.CLICK_TAB !== '') {
                     let iframe_element = $(`${iframeTab.CLICK_TAB.attr("href")} > iframe`),
                         src = iframe_element.attr('src')
-                    iframe_element.parent().removeClass('is-ready')
-                    iframe_element.attr('src', '')
-                    iframe_element.attr('src', src)
+                    if (iframe_element.length) {
+                        iframe_element.parent().removeClass('is-ready')
+                        iframe_element.attr('src', src)
+                    } else {
+                        iframeTab.loadTabContent(iframeTab.CLICK_TAB);
+                    }
                     Dcat.success(translate('refreshed', 'Page refreshed'))
                 }
                 document.oncontextmenu = function () {
@@ -388,49 +416,41 @@ $(function () {
         cacheInit() {
             if (this.USE_CACHE === 0) {
                 this.storageDeleteAll()
-                return;
             }
-            let list = this.storageGet()
-            console.log(list);
-            if (list.length === 0 || JSON.stringify(list) === "{}") {
-                return;
-            }
-            iframeTab.removeTabBarStyle()
+            const list = this.storageGet();
+            const activeId = localStorage.getItem(this.TAB_STORAGE_KEY + '_active');
             for (let i in list) {
+                if (!list[i] || typeof list[i].tab_html !== 'string' || typeof list[i].tab_content_html !== 'string') {
+                    continue;
+                }
                 swiper.appendSlide(list[i].tab_html)
-            }
-            if (iframeTab.LAZY_LOAD === 0) {
-                for (let i in list) {
+                if (this.LAZY_LOAD === 0) {
                     elements.iframe_tabContent.append(list[i].tab_content_html)
                 }
             }
-            /*如果html里面没有active,则默认使用第一个*/
-            let active_ele = iframeTab.findIframeTabActiveElement()
-            let is_first = false;
-            if (active_ele.length <= 0) {
-                is_first = true;
-                let first_url = $(elements.menu_link[0]).attr('href');
-                let first_id = this.generateID(first_url);
-                $(`#iframe-home-${first_id}`).click()
+            const tabs = elements.iframe_tab.find('.nav-link');
+            let active = tabs.filter(function () { return this.id === activeId; }).first();
+            if (!active.length) {
+                // Old caches record the selection in HTML; missing IDs fall back to home.
+                active = activeId ? tabs.first() : tabs.filter('[data-first="0"].active').first();
             }
-            let content_id = active_ele.attr('href')
-            if (iframeTab.LAZY_LOAD === 1 && !is_first) {
-                let content_without_suffix = content_id.replace('#iframe-', "")
-                console.log(content_without_suffix);
-                console.log(list[content_without_suffix].tab_content_html);
-                elements.iframe_tabContent.append(list[content_without_suffix].tab_content_html)
-            }
-            iframeTab.linkMenuAndIframeTab(content_id)
+            (active.length ? active : tabs.first()).click();
         },
         cacheUpdateTabBar(tab_link_element) {
-            if (this.USE_CACHE !== 1) {
+            if (this.USE_CACHE !== 1 || !tab_link_element.length) {
                 return;
+            }
+            if (tab_link_element.hasClass('active')) {
+                localStorage.setItem(this.TAB_STORAGE_KEY + '_active', tab_link_element.attr('id'));
             }
             /*更新TabBar的html*/
             if (tab_link_element.attr('data-first') !== '1') {
                 let id = tab_link_element.attr('id').split("-").pop();
                 let tab_html = tab_link_element.parents('li').prop('outerHTML')
-                let tab_content_html = $(`#iframe-${id}`).prop('outerHTML')
+                const content = $(`#iframe-${id}`);
+                // Restored inactive tabs have no iframe until first selected.
+                let tab_content_html = content.length ? content.clone().removeClass('is-ready').prop('outerHTML')
+                    : (this.storageGet()[id] || {}).tab_content_html;
                 this.storageSet(id, {id, tab_html, tab_content_html})
             }
         },
@@ -461,14 +481,13 @@ $(function () {
             this.syncLocaleCache();
             /*清除pjax默认菜单a标签点击事件*/
             this.clearDefaultMenuEvent()
-            /*加入第一条默认菜单*/
-            this.joinFirstMenu()
             /*菜单监听*/
             this.menuClick()
-            /*缓存标签页处理*/
-            this.cacheInit()
             /*事件注册*/
             this.iframeTabEventRegister()
+            /*恢复前只创建首页标签，按当前选择加载页面*/
+            this.joinFirstMenu(false)
+            this.cacheInit()
             /*右键事件注册*/
             this.rightClickEventRegister()
             /*兼容dcat夜间模式*/

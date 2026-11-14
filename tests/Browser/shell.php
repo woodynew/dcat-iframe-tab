@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="<?= e($locale) ?>"><head><meta charset="utf-8"><title><?= e($title) ?></title>
 <link rel="stylesheet" href="/assets/dcat/plugins/vendors.min.css">
+<link rel="stylesheet" href="/iframe-assets/css/swiper.min.css">
+<link rel="stylesheet" href="/iframe-assets/css/style.css">
 <script src="/assets/dcat/plugins/vendors.min.js"></script>
 <script>window.Dcat = {success: message => document.querySelector('#message').textContent = message, error: message => document.querySelector('#message').textContent = message};</script>
 </head><body>
@@ -12,8 +14,9 @@
 <nav class="main-menu"><div class="main-menu-content"><ul class="sidebar">
 <li><a class="nav-link" href="/admin/fixture?child=home"><?= e($title) ?></a></li>
 <li><a class="nav-link" href="/admin/fixture?child=records"><?= e($record) ?></a></li>
+<li><a class="nav-link" href="/admin/fixture?child=tools">Tools</a></li>
 </ul></div></nav>
-<input id="iframe_tab_cache" value="1" type="hidden"><input id="iframe_tab_lazy_load" value="1" type="hidden"><input id="use_id" value="fixture" type="hidden">
+<input id="iframe_tab_cache" value="<?= $request->query('cache') === '0' ? 0 : 1 ?>" type="hidden"><input id="iframe_tab_lazy_load" value="<?= $request->query('lazy') === '0' ? 0 : 1 ?>" type="hidden"><input id="use_id" value="fixture" type="hidden">
 <div class="mouse-click-menu"><ul>
 <?php foreach (['close_all' => 'close-all', 'close_other' => 'close-other', 'refresh' => 'refresh', 'clear_cache' => 'clear-cache', 'copy_link' => 'copy-link', 'open_link' => 'open-link'] as $key => $class): ?>
 <li><a href="javascript:;" class="menu-item tab-<?= $class ?>"><?= e($messages[$key]) ?></a></li>
