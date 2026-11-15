@@ -2,6 +2,62 @@ const path = require('node:path');
 const kit = process.env.KIT_PATH || path.resolve(__dirname, '../../../dcat-admin-kit');
 const { test, expect } = require(path.join(kit, 'node_modules/@playwright/test'));
 
+for (const dark of [false, true]) {
+    test(`long Help stays inside its iframe in ${dark ? 'dark' : 'light'} mode`, async ({ page }) => {
+        await page.goto('/admin/fixture?style=1');
+        const child = page.frameLocator('#iframe-tabContent .tab-pane.active iframe');
+        await child.locator('body').evaluate((body, dark) => body.classList.toggle('dark-mode', dark), dark);
+        await child.locator('#fixture-help').hover();
+        const tip = child.locator('.layui-layer-tips');
+        await expect(tip).toBeVisible();
+        const bounds = await tip.evaluate(async node => {
+            await Promise.all(node.getAnimations().map(animation => animation.finished));
+            const rect = node.getBoundingClientRect();
+            return { top: rect.top, bottom: rect.bottom, height: window.innerHeight };
+        });
+        expect(bounds.top).toBeGreaterThanOrEqual(0);
+        expect(bounds.bottom).toBeLessThanOrEqual(bounds.height);
+        await child.locator('#child-title').hover();
+        await expect(tip).toHaveCount(0);
+    });
+
+    test(`tab states have readable contrast and an active marker in ${dark ? 'dark' : 'light'} mode`, async ({ page }) => {
+        await page.goto('/admin/fixture?style=1');
+        await page.evaluate(dark => {
+            document.body.classList.toggle('dark-mode', dark);
+            $(document).trigger(dark ? 'dark-mode.shown' : 'dark-mode.hide');
+        }, dark);
+        await page.locator('.main-menu .nav-link').nth(1).click();
+        const tabs = page.locator('#iframe-tab .nav-link');
+        await tabs.evaluateAll(async nodes => {
+            await Promise.all(nodes.flatMap(node => node.getAnimations().map(animation => animation.finished)));
+        });
+        for (const headerColor of ['#ffffff', '#586cb1', '#1e1e2d']) {
+            await page.locator('.navbar').evaluate((node, color) => node.style.backgroundColor = color, headerColor);
+            const appearance = await tabs.evaluateAll(nodes => nodes.map(node => {
+                const style = getComputedStyle(node);
+                const textStyle = getComputedStyle(node.querySelector('p') || node);
+                const bar = getComputedStyle(document.querySelector('#iframe-tab-container'));
+                return { color: textStyle.color, background: style.backgroundColor, bar: bar.backgroundColor, border: style.borderColor };
+            }));
+            expect(appearance[1].background).not.toBe(appearance[0].background);
+            expect(appearance[1].border).not.toBe(appearance[0].border);
+            for (const state of appearance) {
+                const luminance = color => {
+                    const rgb = color.match(/[\d.]+/g).slice(0, 3).map(Number).map(value => {
+                        value /= 255;
+                        return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+                    });
+                    return rgb[0] * 0.2126 + rgb[1] * 0.7152 + rgb[2] * 0.0722;
+                };
+                const text = luminance(state.color);
+                const background = luminance(state.background === 'rgba(0, 0, 0, 0)' ? state.bar : state.background);
+                expect((Math.max(text, background) + 0.05) / (Math.min(text, background) + 0.05)).toBeGreaterThanOrEqual(4.5);
+            }
+        }
+    });
+}
+
 test('reload preserves tab order and current page, including home and adjacent tabs after closing', async ({ page }) => {
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));

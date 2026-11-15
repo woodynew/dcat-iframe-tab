@@ -22,6 +22,8 @@ foreach ($mounts as $prefix => $directory) {
     exit;
 }
 require $kit.'/vendor/autoload.php';
+// Exercise the sibling Dcat source rather than Composer's installed snapshot.
+require (getenv('DCAT_PATH') ?: dirname($root).'/dcat-admin').'/src/Widgets/Tooltip.php';
 
 class LocaleFixtureApplication extends \Orchestra\Testbench\Foundation\Application
 {

@@ -65,13 +65,13 @@ $ php artisan vendor:publish --tag=iframe-tab.config --force
 
 ### 联动回归测试
 
-测试使用相邻 `dcat-admin-kit` 仓库的 Composer 和 Playwright 开发依赖（先在 Kit 中完成 `composer install`、`npm ci`）。不需要启动 Demo 或连接业务数据库：
+测试使用相邻 `dcat-admin-kit` 仓库的 Composer 和 Playwright 开发依赖（先在 Kit 中完成 `composer install`、`npm ci`），并加载相邻 `dcat-admin` 源码中的 Tooltip，验证公共提示组件与 iframe 的联动。不需要启动 Demo 或连接业务数据库：
 
 ```bash
 PHP_BINARY=php node ../dcat-admin-kit/node_modules/@playwright/test/cli.js test --config tests/Browser/playwright.config.js
 ```
 
-默认使用本机 Chrome；CI 可设置 `CI=1` 使用已安装的 Playwright Chromium。Kit 位于其他位置时设置 `KIT_PATH`。测试覆盖 Session、CSRF、三种语言、主页面与 iframe 内切换、同语言缓存恢复及旧语言缓存失效。
+默认使用本机 Chrome；CI 可设置 `CI=1` 使用已安装的 Playwright Chromium。Kit、Dcat 位于其他位置时分别设置 `KIT_PATH`、`DCAT_PATH`。测试覆盖 Session、CSRF、三种语言、标签缓存恢复、浅色/深色标签辨识度及长 Help 提示的 iframe 边界避让。
 
 `src/assets/js/compress/base.js` 是实际发布文件，与 `src/assets/js/base.js` 保持同步；本次使用相同源码，避免依赖额外的压缩工具。
 

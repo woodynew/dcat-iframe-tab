@@ -1,21 +1,33 @@
 .iframe-tab-container {
+    --iframe-tab-bg: #ffffff;
+    --iframe-tab-text: #323639;
+    --iframe-tab-border: #e4e4e7;
+    --iframe-tab-hover: #f4f4f5;
+    --iframe-tab-active-bg: #f5f6fb;
+    --iframe-tab-active-text: #4c60a3;
+    --iframe-tab-active-border: #e4e7f2;
+    --iframe-tab-accent: #586cb1;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font-size: 14px;
+    letter-spacing: 0;
     position: absolute;
     top: 60px;
     width: calc(100% - 260px);
     max-width: 100%;
-    height: 40px;
-    background: #ffffff;
-    border-top: 1px solid #e2e2e2;
+    height: 52px;
+    background: var(--iframe-tab-bg);
+    border-top: 1px solid var(--iframe-tab-border);
+    border-bottom: 1px solid var(--iframe-tab-border);
     box-sizing: border-box;
     min-height: 20px;
     z-index: 1;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+    box-shadow: none;
 }
 
 .iframe-tab-container + .iframe-tab-wrapper {
-    padding: 100px 0 0 0;
+    padding: 112px 0 0 0;
     top: 0;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 112px);
     min-height: 900px;
 }
 
@@ -26,7 +38,7 @@
 }
 
 .iframe-tab-sidebar-separate + .iframe-tab-wrapper {
-    padding: calc(6rem + 40px) 0 0 0;
+    padding: calc(6rem + 52px) 0 0 0;
 }
 
 .header-navbar.navbar-shadow {
@@ -88,18 +100,54 @@
 }
 
 #iframe-tab-container #iframe-tab .nav-link {
-    padding: 0 30px;
+    padding: 0 32px 0 12px;
     box-sizing: border-box;
-    line-height: 40px;
-    height: 40px;
-    border-radius: 0;
+    line-height: 36px;
+    height: 38px;
+    border-radius: 6px;
     position: relative;
-    border-right: 1px solid #efefef;
-    margin-right: 0;
+    border: 1px solid transparent;
+    margin: 6px 4px;
+    color: var(--iframe-tab-text);
+    background: transparent;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background-color .15s ease, color .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+
+#iframe-tab-container #iframe-tab .nav-link:hover {
+    color: var(--iframe-tab-text);
+    background: var(--iframe-tab-hover);
+}
+
+#iframe-tab-container #iframe-tab .nav-link.active {
+    color: var(--iframe-tab-active-text);
+    background: var(--iframe-tab-active-bg);
+    border-color: var(--iframe-tab-active-border);
+    box-shadow: none;
+}
+
+#iframe-tab-container #iframe-tab .nav-link[data-first="1"] {
+    padding-right: 12px;
+}
+
+#iframe-tab-container #iframe-tab .nav-link > i {
+    width: 16px;
+    margin-right: 8px;
+    font-size: 16px;
+    line-height: 1;
+    vertical-align: -2px;
+}
+
+#iframe-tab-container #iframe-tab .nav-link:focus-visible {
+    outline: 2px solid var(--iframe-tab-accent);
+    outline-offset: -3px;
 }
 
 #iframe-tab-container #iframe-tab .nav-link p, #iframe-tab-container #iframe-tab .nav-link span:not(.iframe-tab-close-btn) {
     display: inline;
+    color: inherit;
 }
 
 .iframe-tab-close-btn {
@@ -109,20 +157,20 @@
 /*#iframe-tab-container #iframe-tab .nav-link.active .iframe-tab-close-btn,*/
 #iframe-tab-container #iframe-tab .nav-link:hover .iframe-tab-close-btn {
     position: absolute;
-    top: -1px;
+    top: 0;
     right: 7px;
     display: block;
     z-index: 999;
 }
 
-#iframe-tab-container #iframe-tab .nav-link.active .iframe-tab-close-btn i {
-    color: white;
-    font-size: 12px;
+#iframe-tab-container #iframe-tab .nav-link .iframe-tab-close-btn i {
+    color: inherit;
+    font-size: 14px;
     transition: margin-left .3s ease-in-out;
 }
 
 #iframe-tab-container #iframe-tab .nav-link:hover .iframe-tab-close-btn {
-    color: #414750;
+    color: inherit;
     font-weight: lighter;
 }
 
@@ -183,17 +231,17 @@
 }
 
 .swiper-button-prev i, .swiper-button-next i {
-    color: #4e5969;
-    font-size: 20px;
+    color: var(--iframe-tab-text, #323639);
+    font-size: 16px;
 }
 
-/* 箭头按钮盖住标签栏两端。背景必须不透明，否则选中标签的主色会从按钮底下透出来。
-   Swiper 给到头的按钮加 opacity:.35，会把箭头洗进白色标签栏。 */
+/* 箭头背景保持不透明，防止选中标签从按钮下透出；禁用时只淡化图标。 */
 .swiper-button-prev,
 .swiper-button-next {
     width: 40px;
-    height: 40px;
-    background: #fff;
+    height: 100%;
+    box-sizing: border-box;
+    background: var(--iframe-tab-bg, #fff);
     border: none;
     box-shadow: none;
     margin-top: 0;
@@ -205,7 +253,7 @@
 
 .swiper-button-prev {
     left: 0;
-    border-right: 1px solid #e5e6eb;
+    border-right: 1px solid var(--iframe-tab-border, #e4e4e7);
 }
 
 .swiper-button-prev:after, .swiper-container-rtl .swiper-button-next:after {
@@ -214,7 +262,7 @@
 
 .swiper-button-next {
     right: 0;
-    border-left: 1px solid #e5e6eb;
+    border-left: 1px solid var(--iframe-tab-border, #e4e4e7);
 }
 
 .swiper-button-prev.swiper-button-disabled,
@@ -224,7 +272,7 @@
 
 .swiper-button-prev.swiper-button-disabled i,
 .swiper-button-next.swiper-button-disabled i {
-    color: #c9cdd4;
+    color: #a1a1aa;
 }
 
 .swiper-button-next:after, .swiper-container-rtl .swiper-button-prev:after {
@@ -237,36 +285,26 @@
 
 .swiper-container {
     width: calc(100% - 80px);
-    height: 40px;
+    height: 50px;
     /*background: red;*/
 }
 
-#iframe-tab-container.sidebar-dark-white #iframe-tab .nav-link {
-    border-right: 0;
-}
-#iframe-tab-container.sidebar-dark-white #iframe-tab .nav-link.active{
-    background: #1e1e2d;
-}
-/* 暗色主题：关闭按钮统一为白色（与选中标签的按钮一致）。
-   沿用亮色下的深灰 #414750 时，非选中标签上的按钮在深色标签栏上几乎看不见。 */
-#iframe-tab-container.sidebar-dark-white #iframe-tab .nav-link .iframe-tab-close-btn i {
-    color: #fff;
-    font-size: 12px;
-}
-#iframe-tab-container.sidebar-dark-white{
-    border-top: 1px solid #2c2c42;
-}
-#iframe-tab-container.sidebar-dark-white .swiper-button-prev,#iframe-tab-container.sidebar-dark-white .swiper-button-next{
-    background: #0e0e1d;
-    box-sizing: border-box;
-    border: 1px solid #2c2c42;
-}
-#iframe-tab-container.sidebar-dark-white .swiper-button-prev i,#iframe-tab-container.sidebar-dark-white .swiper-button-next i{
-    color: #efefef;
+body.dark-mode #iframe-tab-container,
+#iframe-tab-container.sidebar-dark-white {
+    --iframe-tab-bg: #1c1e23;
+    --iframe-tab-text: #d4d4d8;
+    --iframe-tab-border: #36363a;
+    --iframe-tab-hover: #2e3033;
+    --iframe-tab-active-bg: #2e3033;
+    --iframe-tab-active-text: #f2f2f2;
+    --iframe-tab-active-border: #4b4d52;
+    --iframe-tab-accent: #b3d4ff;
+    /* Dcat 的 sidebar 深色背景使用了 !important。 */
+    background: var(--iframe-tab-bg) !important;
 }
 #iframe-tab-container.sidebar-dark-white .swiper-button-prev.swiper-button-disabled i,
 #iframe-tab-container.sidebar-dark-white .swiper-button-next.swiper-button-disabled i {
-    color: #6b7280;
+    color: #71717a;
 }
 #iframe-tabContent { position: relative; height: 100%; }
 .iframe-tab-pane { position: absolute; inset: 0; }
@@ -400,6 +438,9 @@ body.dark-mode .iframe-tab-loader-mark i:last-child {
     50% { transform: rotate(135deg) scale(.82); border-color: #91a2ec; }
 }
 @media (prefers-reduced-motion: reduce) {
+    #iframe-tab-container #iframe-tab .nav-link {
+        transition: none;
+    }
     .iframe-tab-progress::after,
     .iframe-tab-loader-aura,
     .iframe-tab-loader-mark i:last-child {
