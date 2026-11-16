@@ -3,6 +3,29 @@ const kit = process.env.KIT_PATH || path.resolve(__dirname, '../../../dcat-admin
 const { test, expect } = require(path.join(kit, 'node_modules/@playwright/test'));
 
 for (const dark of [false, true]) {
+    test(`Kit global styles preserve iframe spacing in ${dark ? 'dark' : 'light'} mode`, async ({ page }) => {
+        await page.goto('/admin/fixture?style=1&kit=1');
+        await page.evaluate(dark => {
+            document.body.classList.toggle('dark-mode', dark);
+            $(document).trigger(dark ? 'dark-mode.shown' : 'dark-mode.hide');
+            document.body.insertAdjacentHTML('beforeend', '<ul id="ordinary-pills" class="nav nav-pills"><li class="nav-item"><a class="nav-link">Ordinary tab</a></li></ul>');
+        }, dark);
+        await page.locator('.main-menu .nav-link').nth(1).click();
+        const layout = await page.locator('#iframe-tab .nav-link').evaluateAll(nodes => nodes.map(node => {
+            const bar = node.closest('#iframe-tab-container').getBoundingClientRect();
+            const rect = node.getBoundingClientRect();
+            const style = getComputedStyle(node);
+            return { top: rect.top - bar.top - 1, bottom: bar.bottom - rect.bottom - 1,
+                marginBottom: style.marginBottom, paddingLeft: style.paddingLeft };
+        }));
+        for (const tab of layout) {
+            expect(Math.abs(tab.top - tab.bottom)).toBeLessThanOrEqual(0.5);
+            expect(tab.marginBottom).toBe('0px');
+            expect(tab.paddingLeft).toBe('10px');
+        }
+        await expect(page.locator('#ordinary-pills .nav-link')).toHaveCSS('margin-bottom', '8px');
+    });
+
     test(`tabs stay centered and compact with Bootstrap list spacing in ${dark ? 'dark' : 'light'} mode`, async ({ page }) => {
         await page.goto('/admin/fixture?style=1');
         await page.evaluate(dark => {
@@ -149,8 +172,10 @@ test('right-click refresh reloads only its target iframe', async ({ page }) => {
     const current = page.frameLocator('#iframe-tabContent .tab-pane.active iframe');
     const currentTime = await current.locator('#child-title').evaluate(() => performance.timeOrigin);
     await page.locator('#iframe-tab .nav-link.active').click({ button: 'right' });
+    const reloaded = page.waitForEvent('framenavigated', frame => frame.url().endsWith('child=records'));
     await page.locator('.tab-refresh').click();
-    await expect.poll(() => current.locator('#child-title').evaluate(() => performance.timeOrigin)).not.toBe(currentTime);
+    await reloaded;
+    expect(await current.locator('#child-title').evaluate(() => performance.timeOrigin)).not.toBe(currentTime);
     expect(await homeFrame.evaluate(() => performance.timeOrigin)).toBe(homeTime);
     await expect(page.locator('#iframe-tab .nav-link')).toHaveCount(2);
     await expect(page.locator('#iframe-tabContent .tab-pane.active')).toHaveCount(1);

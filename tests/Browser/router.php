@@ -8,6 +8,7 @@ $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $mounts = [
     '/assets/' => $kit.'/vendor/woodynew/dcat-laravel-admin/resources/dist',
     '/iframe-assets/' => $root.'/src/assets',
+    '/kit-assets/' => $kit.'/resources/assets',
 ];
 foreach ($mounts as $prefix => $directory) {
     if (strpos($path, $prefix) !== 0) continue;

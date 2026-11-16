@@ -5,6 +5,9 @@
 <?php if ($styleFixture): ?>
 <link rel="stylesheet" href="/assets/adminlte/adminlte.css">
 <link rel="stylesheet" href="/assets/dcat/css/dcat-app.css">
+<?php if ($request->query('kit') === '1'): ?>
+<link rel="stylesheet" href="/kit-assets/css/global.css">
+<?php endif ?>
 <style>
     .main-menu { position: absolute; top: 100px; width: 260px; }
     .navbar { height: 60px; margin-left: 260px; }
