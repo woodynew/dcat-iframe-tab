@@ -3,6 +3,44 @@ const kit = process.env.KIT_PATH || path.resolve(__dirname, '../../../dcat-admin
 const { test, expect } = require(path.join(kit, 'node_modules/@playwright/test'));
 
 for (const dark of [false, true]) {
+    test(`tabs stay centered and compact with Bootstrap list spacing in ${dark ? 'dark' : 'light'} mode`, async ({ page }) => {
+        await page.goto('/admin/fixture?style=1');
+        await page.evaluate(dark => {
+            document.body.classList.toggle('dark-mode', dark);
+            $(document).trigger(dark ? 'dark-mode.shown' : 'dark-mode.hide');
+        }, dark);
+        await page.locator('.main-menu .nav-link').nth(1).click();
+        for (const width of [375, 768, 1280]) {
+            await page.setViewportSize({width, height: 900});
+            await page.locator('#iframe-tab-container').evaluate(async node => {
+                await Promise.all(node.getAnimations().map(animation => animation.finished));
+            });
+            const layout = await page.locator('#iframe-tab').evaluate(list => {
+                const bar = list.closest('#iframe-tab-container');
+                const bounds = bar.getBoundingClientRect();
+                return {
+                    background: getComputedStyle(bar).backgroundColor,
+                    marginBottom: getComputedStyle(list).marginBottom,
+                    tabs: [...list.querySelectorAll('.nav-link')].map(node => {
+                        const rect = node.getBoundingClientRect();
+                        const icon = node.querySelector(':scope > i').getBoundingClientRect();
+                        const text = node.querySelector('p').getBoundingClientRect();
+                        return {top: rect.top - bounds.top - 1, bottom: bounds.bottom - rect.bottom - 1,
+                            iconGap: text.left - icon.right, rightPadding: parseFloat(getComputedStyle(node).paddingRight)};
+                    }),
+                };
+            });
+            expect(layout.background).not.toBe('rgb(255, 255, 255)');
+            expect(layout.marginBottom).toBe('0px');
+            for (const tab of layout.tabs) {
+                expect(Math.abs(tab.top - tab.bottom)).toBeLessThanOrEqual(0.5);
+                expect(tab.top).toBeGreaterThanOrEqual(6);
+                expect(tab.iconGap).toBeLessThanOrEqual(8.5);
+                expect(tab.rightPadding).toBeLessThanOrEqual(26);
+            }
+        }
+    });
+
     test(`long Help stays inside its iframe in ${dark ? 'dark' : 'light'} mode`, async ({ page }) => {
         await page.goto('/admin/fixture?style=1');
         const child = page.frameLocator('#iframe-tabContent .tab-pane.active iframe');

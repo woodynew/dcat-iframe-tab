@@ -1,5 +1,5 @@
 .iframe-tab-container {
-    --iframe-tab-bg: #ffffff;
+    --iframe-tab-bg: #fbfcfe;
     --iframe-tab-text: #323639;
     --iframe-tab-border: #e4e4e7;
     --iframe-tab-hover: #f4f4f5;
@@ -100,14 +100,14 @@
 }
 
 #iframe-tab-container #iframe-tab .nav-link {
-    padding: 0 32px 0 12px;
+    padding: 0 26px 0 10px;
     box-sizing: border-box;
     line-height: 36px;
     height: 38px;
     border-radius: 6px;
     position: relative;
     border: 1px solid transparent;
-    margin: 6px 4px;
+    margin: 0 3px;
     color: var(--iframe-tab-text);
     background: transparent;
     font-size: 14px;
@@ -129,12 +129,12 @@
 }
 
 #iframe-tab-container #iframe-tab .nav-link[data-first="1"] {
-    padding-right: 12px;
+    padding-right: 10px;
 }
 
 #iframe-tab-container #iframe-tab .nav-link > i {
     width: 16px;
-    margin-right: 8px;
+    margin-right: 4px;
     font-size: 16px;
     line-height: 1;
     vertical-align: -2px;
@@ -158,7 +158,7 @@
 #iframe-tab-container #iframe-tab .nav-link:hover .iframe-tab-close-btn {
     position: absolute;
     top: 0;
-    right: 7px;
+    right: 6px;
     display: block;
     z-index: 999;
 }
@@ -178,6 +178,14 @@
     width: 100%;
     position: relative;
     flex-wrap: nowrap;
+    /* 覆盖旧视图 mb-3 的通用列表间距。 */
+    margin: 0 !important;
+    padding: 0;
+}
+
+#iframe-tab-container #iframe-tab .swiper-slide {
+    display: flex;
+    align-items: center;
 }
 
 /*右键菜单*/
@@ -241,7 +249,7 @@
     width: 40px;
     height: 100%;
     box-sizing: border-box;
-    background: var(--iframe-tab-bg, #fff);
+    background: var(--iframe-tab-bg, #fbfcfe);
     border: none;
     box-shadow: none;
     margin-top: 0;

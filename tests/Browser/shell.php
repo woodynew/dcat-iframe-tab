@@ -35,8 +35,10 @@
 <script>window.fixtureReady = true;</script>
 <?php else: ?>
 <nav class="main-menu"><div class="main-menu-content"><ul class="sidebar">
-<li><a class="nav-link" href="/admin/fixture?child=home<?= $styleFixture ? '&style=1' : '' ?>"><p><?= e($title) ?></p></a></li>
-<li><a class="nav-link" href="/admin/fixture?child=records<?= $styleFixture ? '&style=1' : '' ?>"><p><?= e($record) ?></p></a></li>
+<li><a class="nav-link" href="/admin/fixture?child=home<?= $styleFixture ? '&style=1' : '' ?>"><i class="fa fa-fw fa-bar-chart"></i>
+<p><?= e($title) ?></p></a></li>
+<li><a class="nav-link" href="/admin/fixture?child=records<?= $styleFixture ? '&style=1' : '' ?>"><i class="fa fa-fw feather icon-menu"></i>
+<p><?= e($record) ?></p></a></li>
 <li><a class="nav-link" href="/admin/fixture?child=tools<?= $styleFixture ? '&style=1' : '' ?>"><p>Tools</p></a></li>
 </ul></div></nav>
 <input id="iframe_tab_cache" value="<?= $request->query('cache') === '0' ? 0 : 1 ?>" type="hidden"><input id="iframe_tab_lazy_load" value="<?= $request->query('lazy') === '0' ? 0 : 1 ?>" type="hidden"><input id="use_id" value="fixture" type="hidden">
@@ -45,7 +47,7 @@
 <li><a href="javascript:;" class="menu-item tab-<?= $class ?>"><?= e($messages[$key]) ?></a></li>
 <?php endforeach ?>
 </ul></div>
-<div id="iframe-tab-container" class="<?= $styleFixture ? 'iframe-tab-container' : '' ?>"><div class="swiper-container"><ul id="iframe-tab" class="nav nav-pills swiper-wrapper"></ul></div>
+<div id="iframe-tab-container" class="<?= $styleFixture ? 'iframe-tab-container' : '' ?>"><div class="swiper-container"><ul id="iframe-tab" class="nav nav-pills mb-3 swiper-wrapper" role="tablist"></ul></div>
 <div class="swiper-button-prev"><i class="fa fa-angle-double-left"></i></div><div class="swiper-button-next"><i class="fa fa-angle-double-right"></i></div></div>
 <div class="<?= $styleFixture ? 'content-wrapper iframe-tab-wrapper' : '' ?>"><div id="iframe-tabContent" style="position:relative; height:600px"></div></div>
 <script type="application/json" id="iframe-tab-i18n" data-locale="<?= e($locale) ?>"><?= $json ?></script>
